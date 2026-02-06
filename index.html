@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch me if You Can in Js</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            height: 300px;
+            width: 450px;
+            border: 2px solid blue;
+            text-align: center;
+            font-size: larger;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.829);
+            box-shadow: inset 0px 0px 10px aqua;
+            color: white;
+            margin-top: 20px;
+            position: relative;
+            overflow-x: hidden;
+
+
+        }
+
+        #btn {
+            height: 40px;
+            width: 220px;
+            background-color: maroon;
+            color: white;
+            border-radius: 10px;
+            font-size: larger;
+            transition: .5s ease-in-out;
+            z-index: 1;
+            position: relative;
+            margin: 10px 0 0 10px;
+            cursor: pointer;
+        }
+
+        #clear:hover {
+            box-shadow: 0px 0px 10px rgb(101, 250, 1)
+        }
+
+        #clear {
+            height: 40px;
+            width: 120px;
+            background-color: rgb(0, 109, 128);
+            color: white;
+            border-radius: 10px;
+            font-size: larger;
+            position: relative;
+            margin: 10px 0 0 20px;
+            cursor: pointer;
+
+        }
+        input{
+            position: relative;
+        }
+
+        .in {
+            margin: 0px 0 10px 10px;
+            height: 50px;
+            width: 350px;
+            font-size: x-large;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.829);
+            box-shadow: 0px 0px 5px white inset;
+            color: white;
+        }
+        .incheck{
+            height: 20px;
+            width: 300px;
+             position: absolute;
+             right: -50px;
+            top: 160px;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width : 394px) {
+            body{
+                display: flex;
+                justify-content: center;
+            }
+            .container{
+                min-height: 360px;
+                margin-left: 20px;
+            }
+            .incheck{
+            position: absolute;
+            right: -100px;
+        }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <button id="btn" onmouseover="catchme()">Catch me</button> -->
+    <div class="container">
+        <h2>Login</h2>
+        <input type="text" id="input" placeholder="Enter Username" class="in"><br>
+        <input type="password" id="input1" placeholder="Enter Password" class="in"> <input type="checkbox"
+            onclick="checkon()" id="check" class="incheck"><br>
+        <button id="btn" onmouseover="catchme()">Login</button>
+        <button id="clear" onclick="cleen()">Clear</button>
+
+
+    </div>
+
+    <script>
+
+        let input = document.getElementById('input');
+        let input1 = document.getElementById('input1');
+        let btn = document.getElementById('btn');
+
+
+        function catchme() {
+            if (input.value == "" || input1.value == "") {
+
+                btn.style.left = Math.random() * 50 + 'vw';
+                btn.style.top = Math.random() * 50 + 'vh';
+                btn.innerText = "Complete First";
+            } else {
+                btn.style.position = 'fixed';
+                btn.innerText = "Login";
+                // input.value='';
+                // input1.value='';
+                alert('Loged in By ' + input.value)
+            }
+        }
+
+        let c = document.getElementById('clear')
+        function cleen() {
+            input.value = '';
+            input1.value = '';
+        }
+
+        let check = document.getElementById('check');
+
+        function checkon() {
+            if (check.checked) {
+                input1.type = "text";
+            } else {
+                input1.type = 'password';
+            }
+        }
+
+        function updateButton() {
+            if (input.value !== '' && input1.value !== '') {
+                btn.innerText = 'Login';
+            } else {
+                btn.innerText = 'Complete First';
+            }
+        }
+        input.addEventListener('input', updateButton);
+        input1.addEventListener('input', updateButton)
+
+
+
+
+
+    </script>
+</body>
+
+</html>
